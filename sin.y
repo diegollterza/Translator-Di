@@ -26,6 +26,7 @@ void yyerror(char const *s);
 %token CHAR_TYPE
 %token<str_val> VAR
 %token READ
+%token<str_val> STRING
 %token MAIN
 %start main
 %token '('
@@ -70,6 +71,8 @@ exp : exp '+' exp    {int len = strlen($1)+strlen($3)+1;$$ = malloc(len+1);sprin
 /* ---------------------------------- entrada/saida ---------------------------------- */
 print : PRINT '(' VAR ')'    {int len = strlen($3)+7;$$ = malloc(len+1);sprintf($$,"print(%s)",$3);}
       | PRINT '(' exp ')'    {int len = strlen($3)+7;$$ = malloc(len+1);sprintf($$,"print(%s)",$3);}
+      | PRINT '(' STRING ')'    {int len = strlen($3)+7;$$ = malloc(len+1);sprintf($$,"print(%s)",$3);}
+      ;
 read  : READ '(' VAR ')'     {int len = strlen($3)+6;$$ = malloc(len+1);sprintf($$,"read(%s)",$3);}
 
 /* ---------------------------------- declaração/atribuição ---------------------------------- */
@@ -107,9 +110,9 @@ main : MAIN '{' block '}' {fseek(yyout, 0, SEEK_SET);fprintf(yyout,"\
 #include <stdio.h>\n\
 #include <stdlib.h>\n\
 #include <math.h> \n\
-#define print(x) printf(_Generic(x, signed: \"%cd\", double: \"%clf\", char:\"%cc\"), x)\n\
+#define print(x) printf(_Generic(x, signed: \"%cd\", double: \"%clf\", char:\"%cc\", char*:\"%cs\"), x)\n\
 #define read(x) scanf(_Generic(x, signed: \"%cd\", double: \"%clf\", char:\"%cc\"), &x)\n\
-void main(int argc, char **argv){\n%s}",37,37,37,37,37,37,$3)}
+void main(int argc, char **argv){\n%s}",37,37,37,37,37,37,37,$3)}
 %%
 
 /* ---------------------------------- erro  ---------------------------------- */

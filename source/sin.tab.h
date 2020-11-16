@@ -52,14 +52,15 @@
      CHAR_TYPE = 268,
      VAR = 269,
      READ = 270,
-     MAIN = 271,
-     ELT = 272,
-     EMT = 273,
-     NE = 274,
-     EQ = 275,
-     NOT = 276,
-     OR = 277,
-     AND = 278
+     STRING = 271,
+     MAIN = 272,
+     ELT = 273,
+     EMT = 274,
+     NE = 275,
+     EQ = 276,
+     NOT = 277,
+     OR = 278,
+     AND = 279
    };
 #endif
 
@@ -77,7 +78,7 @@ typedef union YYSTYPE
 
 
 /* Line 1676 of yacc.c  */
-#line 81 "sin.tab.h"
+#line 82 "sin.tab.h"
 } YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */

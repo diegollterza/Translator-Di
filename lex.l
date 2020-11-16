@@ -28,9 +28,9 @@ int check_filename_ext(const char *filename, const char *ext) {
 "print" {fprintf(com,"COMANDO SAIDA\n");return PRINT;}
 "read" {fprintf(com,"COMANDO ENTRADA\n");return READ;}
 "main" {fprintf(com,"INICIO PROGRAMA\n");return MAIN;}
-[0-9]+ {yylval.str_val = malloc(yytext);sprintf(yylval.str_val,"%s",yytext); return INT;}
-[0-9]+"."[0-9]+ {yylval.str_val = malloc(yytext);sprintf(yylval.str_val,"%s",yytext); return REAL;}
-\'.\' {yylval.str_val = malloc(yytext);sprintf(yylval.str_val,"%s",yytext); return CHAR;}
+[0-9]+ {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return INT;}
+[0-9]+"."[0-9]+ {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return REAL;}
+\'.\' {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return CHAR;}
 "+"|"/"|"*"|"-"|">"|"<"|"("|")"|";"|","|"="|"%"|"^" {return *yytext;}
 "{" {fprintf(com,"INICIO BLOCO\n");return *yytext;}
 "}" {fprintf(com,"FIM BLOCO\n");return *yytext;}
@@ -41,7 +41,8 @@ int check_filename_ext(const char *filename, const char *ext) {
 "and" {return AND;}
 "or" {return OR;}
 "not" {return NOT;}
-[a-zA-Z][a-zA-Z0-9]* {yylval.str_val = malloc(yytext);sprintf(yylval.str_val,"%s",yytext);return VAR;}
+\".+\" {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext);return STRING;}
+[a-zA-Z][a-zA-Z0-9]* {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext);return VAR;}
 %%
 int main(int argc, char *argv[]){
     FILE *yyin;
