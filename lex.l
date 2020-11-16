@@ -18,6 +18,9 @@ int check_filename_ext(const char *filename, const char *ext) {
 }
 %}
 %%
+
+
+  /*---------------------comandos e palavras reservadas---------------------*/
 "if" {fprintf(com,"COMANDO CONDICIONAL\n");return IF;}
 "else" {fprintf(com,"COMANDO CASO CONTRARIO\n");return ELSE;}
 "while" {fprintf(com,"COMANDO ENQUANTO\n");return WHILE;}
@@ -28,12 +31,15 @@ int check_filename_ext(const char *filename, const char *ext) {
 "print" {fprintf(com,"COMANDO SAIDA\n");return PRINT;}
 "read" {fprintf(com,"COMANDO ENTRADA\n");return READ;}
 "main" {fprintf(com,"INICIO PROGRAMA\n");return MAIN;}
+  /*------------------------------tipos de dados----------------------------*/
 [0-9]+ {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return INT;}
 [0-9]+"."[0-9]+ {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return REAL;}
 \'.\' {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return CHAR;}
-"+"|"/"|"*"|"-"|">"|"<"|"("|")"|";"|","|"="|"%"|"^" {return *yytext;}
+  /*---------------------------operadores e atribuicao-----------------------*/
+"+"|"/"|"*"|"-"|">"|"<"|"("|")"|";"|","|"%"|"^" {return *yytext;}
 "{" {fprintf(com,"INICIO BLOCO\n");return *yytext;}
 "}" {fprintf(com,"FIM BLOCO\n");return *yytext;}
+"=" {fprintf(com,"COMANDO ATRIBUICAO\n");return *yytext;}
 "==" {return EQ;}
 ">=" {return EMT;}
 "<=" {return ELT;}
@@ -41,9 +47,12 @@ int check_filename_ext(const char *filename, const char *ext) {
 "and" {return AND;}
 "or" {return OR;}
 "not" {return NOT;}
+  /*------------------------------String e variavel----------------------------*/
 \".+\" {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext);return STRING;}
 [a-zA-Z][a-zA-Z0-9]* {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext);return VAR;}
 %%
+
+  /*--------------------------Bloco principal do parser------------------------*/
 int main(int argc, char *argv[]){
     FILE *yyin;
       if (argc == 3)
@@ -72,6 +81,8 @@ int main(int argc, char *argv[]){
           {
               perror("Falha ao criar o arquivo de comandos: ");
           }
+
+  /*-------------------muda o buffer de saida para um arquivo---------------------*/
           YY_BUFFER_STATE buf = yy_create_buffer(yyin,YY_BUF_SIZE);
           yy_switch_to_buffer(buf);
           yyparse();

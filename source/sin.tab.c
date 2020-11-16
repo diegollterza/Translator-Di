@@ -1693,7 +1693,7 @@ yyreduce:
 
 /* Line 1455 of yacc.c  */
 #line 86 "../sin.y"
-    {int len = strlen((yyvsp[(1) - (3)].str_val))+strlen((yyvsp[(3) - (3)].str_val))+1;(yyval.str_val) = malloc(len+1);sprintf((yyval.str_val),"%s=%s",(yyvsp[(1) - (3)].str_val),(yyvsp[(3) - (3)].str_val));fprintf(com,"COMANDO ATRIBUICAO\n");;}
+    {int len = strlen((yyvsp[(1) - (3)].str_val))+strlen((yyvsp[(3) - (3)].str_val))+1;(yyval.str_val) = malloc(len+1);sprintf((yyval.str_val),"%s=%s",(yyvsp[(1) - (3)].str_val),(yyvsp[(3) - (3)].str_val));;}
     break;
 
   case 34:

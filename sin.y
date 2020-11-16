@@ -83,7 +83,7 @@ dec_var : INT_TYPE VAR           {int len = strlen($2)+4;$$ = malloc(len+1);spri
         | CHAR_TYPE VAR          {int len = strlen($2)+5;$$ = malloc(len+1);sprintf($$,"char %s",$2);}
         | CHAR_TYPE VAR '=' exp  {int len = strlen($2)+strlen($4)+6;$$ = malloc(len+1);sprintf($$,"char %s=%s",$2,$4);}
         ;
-atrib : VAR '=' exp {int len = strlen($1)+strlen($3)+1;$$ = malloc(len+1);sprintf($$,"%s=%s",$1,$3);fprintf(com,"COMANDO ATRIBUICAO\n");}
+atrib : VAR '=' exp {int len = strlen($1)+strlen($3)+1;$$ = malloc(len+1);sprintf($$,"%s=%s",$1,$3);}
 
 
 /* ---------------------------------- bloco de instruções ---------------------------------- */

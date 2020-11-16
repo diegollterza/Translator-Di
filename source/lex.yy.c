@@ -286,20 +286,20 @@ static void yy_fatal_error YY_PROTO(( yyconst char msg[] ));
 	*yy_cp = '\0'; \
 	yy_c_buf_p = yy_cp;
 
-#define YY_NUM_RULES 26
-#define YY_END_OF_BUFFER 27
+#define YY_NUM_RULES 27
+#define YY_END_OF_BUFFER 28
 static yyconst short int yy_acclist[97] =
     {   0,
-       27,   26,   26,   26,   14,   26,   26,   11,   26,   14,
-       26,   14,   26,   14,   26,   25,   26,   25,   26,   25,
-       26,   25,   26,   25,   26,   25,   26,   25,   26,   25,
-       26,   25,   26,   25,   26,   25,   26,   25,   26,   15,
-       26,   16,   26,   20,   11,   19,   17,   18,   25,   25,
-       25,   25,   25,    1,   25,   25,   25,   25,   22,   25,
-       25,   25,   25,   24,   13,   12,   21,   25,   25,   25,
-        4,   25,    5,   25,   25,   23,   25,   25,   25,   25,
-        7,   25,    2,   25,   10,   25,   25,    9,   25,    6,
-       25,   25,    8,   25,    3,   25
+       28,   27,   27,   27,   14,   27,   27,   11,   27,   14,
+       27,   17,   27,   14,   27,   26,   27,   26,   27,   26,
+       27,   26,   27,   26,   27,   26,   27,   26,   27,   26,
+       27,   26,   27,   26,   27,   26,   27,   26,   27,   15,
+       27,   16,   27,   21,   11,   20,   18,   19,   26,   26,
+       26,   26,   26,    1,   26,   26,   26,   26,   23,   26,
+       26,   26,   26,   25,   13,   12,   22,   26,   26,   26,
+        4,   26,    5,   26,   26,   24,   26,   26,   26,   26,
+        7,   26,    2,   26,   10,   26,   26,    9,   26,    6,
+       26,   26,    8,   26,    3,   26
 
     } ;
 
@@ -601,7 +601,10 @@ YY_DECL
 
 #line 20 "../lex.l"
 
-#line 605 "lex.yy.c"
+
+
+  /*---------------------comandos e palavras reservadas---------------------*/
+#line 608 "lex.yy.c"
 
 	if ( yy_init )
 		{
@@ -694,135 +697,143 @@ do_action:	/* This label is used only to access EOF actions. */
 	{ /* beginning of action switch */
 case 1:
 YY_RULE_SETUP
-#line 21 "../lex.l"
+#line 24 "../lex.l"
 {fprintf(com,"COMANDO CONDICIONAL\n");return IF;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 22 "../lex.l"
+#line 25 "../lex.l"
 {fprintf(com,"COMANDO CASO CONTRARIO\n");return ELSE;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 23 "../lex.l"
+#line 26 "../lex.l"
 {fprintf(com,"COMANDO ENQUANTO\n");return WHILE;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 24 "../lex.l"
+#line 27 "../lex.l"
 {fprintf(com,"COMANDO LOOP\n");return FOR;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 25 "../lex.l"
+#line 28 "../lex.l"
 {fprintf(com,"DECLARA INT\n");return INT_TYPE;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 26 "../lex.l"
+#line 29 "../lex.l"
 {fprintf(com,"DECLARA REAL\n");return REAL_TYPE;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 27 "../lex.l"
+#line 30 "../lex.l"
 {fprintf(com,"DECLARA CHAR\n");return CHAR_TYPE;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 28 "../lex.l"
+#line 31 "../lex.l"
 {fprintf(com,"COMANDO SAIDA\n");return PRINT;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 29 "../lex.l"
+#line 32 "../lex.l"
 {fprintf(com,"COMANDO ENTRADA\n");return READ;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 30 "../lex.l"
+#line 33 "../lex.l"
 {fprintf(com,"INICIO PROGRAMA\n");return MAIN;}
 	YY_BREAK
+/*------------------------------tipos de dados----------------------------*/
 case 11:
 YY_RULE_SETUP
-#line 31 "../lex.l"
+#line 35 "../lex.l"
 {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return INT;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 32 "../lex.l"
+#line 36 "../lex.l"
 {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return REAL;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 33 "../lex.l"
+#line 37 "../lex.l"
 {yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext); return CHAR;}
 	YY_BREAK
+/*---------------------------operadores e atribuicao-----------------------*/
 case 14:
 YY_RULE_SETUP
-#line 34 "../lex.l"
+#line 39 "../lex.l"
 {return *yytext;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 35 "../lex.l"
+#line 40 "../lex.l"
 {fprintf(com,"INICIO BLOCO\n");return *yytext;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 36 "../lex.l"
+#line 41 "../lex.l"
 {fprintf(com,"FIM BLOCO\n");return *yytext;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 37 "../lex.l"
-{return EQ;}
+#line 42 "../lex.l"
+{fprintf(com,"COMANDO ATRIBUICAO\n");return *yytext;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 38 "../lex.l"
-{return EMT;}
+#line 43 "../lex.l"
+{return EQ;}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 39 "../lex.l"
-{return ELT;}
+#line 44 "../lex.l"
+{return EMT;}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 40 "../lex.l"
-{return NE;}
+#line 45 "../lex.l"
+{return ELT;}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 41 "../lex.l"
-{return AND;}
+#line 46 "../lex.l"
+{return NE;}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 42 "../lex.l"
-{return OR;}
+#line 47 "../lex.l"
+{return AND;}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 43 "../lex.l"
-{return NOT;}
+#line 48 "../lex.l"
+{return OR;}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 44 "../lex.l"
-{yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext);return STRING;}
+#line 49 "../lex.l"
+{return NOT;}
 	YY_BREAK
+/*------------------------------String e variavel----------------------------*/
 case 25:
 YY_RULE_SETUP
-#line 45 "../lex.l"
-{yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext);return VAR;}
+#line 51 "../lex.l"
+{yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext);return STRING;}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 46 "../lex.l"
+#line 52 "../lex.l"
+{yylval.str_val = (char *)malloc(sizeof(yytext));sprintf(yylval.str_val,"%s",yytext);return VAR;}
+	YY_BREAK
+case 27:
+YY_RULE_SETUP
+#line 53 "../lex.l"
 ECHO;
 	YY_BREAK
-#line 826 "lex.yy.c"
+#line 837 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1706,8 +1717,10 @@ int main()
 	return 0;
 	}
 #endif
-#line 46 "../lex.l"
+#line 53 "../lex.l"
 
+
+  /*--------------------------Bloco principal do parser------------------------*/
 int main(int argc, char *argv[]){
     FILE *yyin;
       if (argc == 3)
@@ -1736,6 +1749,8 @@ int main(int argc, char *argv[]){
           {
               perror("Falha ao criar o arquivo de comandos: ");
           }
+
+  /*-------------------muda o buffer de saida para um arquivo---------------------*/
           YY_BUFFER_STATE buf = yy_create_buffer(yyin,YY_BUF_SIZE);
           yy_switch_to_buffer(buf);
           yyparse();
